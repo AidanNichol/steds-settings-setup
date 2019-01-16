@@ -1,0 +1,14 @@
+{
+  "name": "steds-settings-setup",
+  "version": "1.0.0",
+  "description": "Read the .env file and setup environment variables. If necessary convert from the old config file to .env first",
+  "main": "index.js",
+  "repository": "https://github.com/AidanNichol/steds-settings-setup",
+  "author": "Aidan Nichol <aidan@nicholware.co.uk>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "conf": "^2.1.0",
+    "dotenv": "^6.2.0"
+  }
+}
