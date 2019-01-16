@@ -14,6 +14,11 @@ if (!fs.existsSync(env)){
   const json = JSON.parse(fs.readFileSync(cfg, 'utf8'));
   console.log('json', json);
   const fo = flattenObj(json, 'STEDS');
+  fo.push(['STEDS_db_name_remote', 'http://nicholware.com:5984/bookings']);
+  fo.push(['STEDS_db_name_local', 'http://localhost:5984/devbookings']);
+  fo.push(['STEDS_useFullHistory', false]);
+  fo.push(['STEDS_envfile', env]);
+  console.log('flattened Object', fo, data);
   const data = filterValidFields(fo);
   console.log('data', fo, data);
   console.log('output', outputEnv(data, env));
