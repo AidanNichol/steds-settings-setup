@@ -15,7 +15,7 @@ function setup(){
     console.log('json', json);
     const fo = flattenObj(json, 'STEDS');
     fo.push(['STEDS_db_name_remote', 'http://nicholware.com:5984/bookings']);
-    fo.push(['STEDS_db_name_local', 'http://localhost:5984/devbookings']);
+    fo.push(['STEDS_db_name_local', 'http://localhost:5984/bookings']);
     fo.push(['STEDS_db_useFullHistory', true]);
     fo.push(['STEDS_db_resetLocalBookings', false]);
     fo.push(['STEDS_useFullHistory', true]);
