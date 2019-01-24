@@ -1,14 +1,16 @@
 const Conf = require('conf');
+const envPaths = require('env-paths')
 const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
 function setup(){
-  let settings = new Conf( {projectName: 'stedsbookings'} );
-  const cfg = settings.path;
-  console.log('config file', cfg)
-  const env = cfg.replace('config.json', '.env');
-
+  const env = envPaths('stedsbookings').config+'/.env';
+  console.log('env file', env)
+  
   if (!fs.existsSync(env)){
+    let settings = new Conf( {projectName: 'stedsbookings'} );
+    const cfg = settings.path;
+    console.log('config file', cfg)
     const {filterValidFields} = require('./filterValidFields');
     console.log('setting File', cfg);
     const json = JSON.parse(fs.readFileSync(cfg, 'utf8'));
@@ -20,10 +22,7 @@ function setup(){
     fo.push(['STEDS_db_resetLocalBookings', false]);
     fo.push(['STEDS_useFullHistory', true]);
     fo.push(['STEDS_envfile', env]);
-    console.log('flattened Object', fo);
     const data = filterValidFields(fo);
-    console.log('data', data);
-    console.log('output', outputEnv(data, env));
   }
   const input = dotenv.config({ path: env });
 }
@@ -35,7 +34,6 @@ function outputEnv(data, env) {
       return `${tag}=${val}`;
     })
     .join('\n');
-  console.log('output', env, '\n', outData);
   return fs.writeFileSync(env, outData);
 }
 
