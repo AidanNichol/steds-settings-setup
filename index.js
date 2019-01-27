@@ -27,6 +27,12 @@ function setup(){
   const input = dotenv.config({ path: env });
   process.env.STEDS_envfile = env;
 }
+function refresh(){
+  const envConfig = dotenv.parse(fs.readFileSync(process.env.STEDS_envfile))
+  for (let k in envConfig) {
+    process.env[k] = envConfig[k]
+  }
+}
 
 function outputEnv(data, env) {
   const outData = data
