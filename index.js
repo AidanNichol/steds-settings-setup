@@ -25,6 +25,7 @@ function setup(){
     const data = filterValidFields(fo);
   }
   const input = dotenv.config({ path: env });
+  process.env.STEDS_envfile = env;
 }
 
 function outputEnv(data, env) {
